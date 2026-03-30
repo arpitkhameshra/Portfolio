@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* Colors */
+  --color-background: #050a0f;
+  --color-surface: #0d1520;
+  --color-surface-2: #111d2e;
+  
+  --color-accent: #00d4ff;
+  --color-accent-2: #f97316;
+  --color-accent-3: #22c55e;
+  
+  --color-text-main: #e2e8f0;
+  --color-text-muted: #64748b;
+
+  --color-border-glow: rgba(0, 212, 255, 0.1);
+
+  /* Fonts */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-heading: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  
+  /* Utilities */
+  --radius-xl: 12px;
+  --radius-md: 6px;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-background);
+    color: var(--color-text-main);
+    font-family: var(--font-sans);
+    /* Subtle radial glow background */
+    background-image: radial-gradient(circle at 0% 0%, rgba(0, 212, 255, 0.05) 0%, transparent 40%),
+                      radial-gradient(circle at 100% 100%, rgba(249, 115, 22, 0.03) 0%, transparent 40%);
+    background-attachment: fixed;
+  }
+}
+
+@layer utilities {
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-background);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-accent);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-accent-2);
+  }
+
+  /* Animations */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+  }
+}

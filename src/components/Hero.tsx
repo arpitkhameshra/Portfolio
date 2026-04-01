@@ -121,20 +121,6 @@ export default function Hero() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            {/* Floating Badges */}
-            <div className="absolute -top-6 -left-6 bg-surface-2 border border-[#f97316]/30 text-[#f97316] p-2 rounded-lg animate-float" style={{ animationDelay: '0s' }}>
-              <span className="font-mono text-xs">AWS</span>
-            </div>
-            <div className="absolute top-1/4 -right-4 bg-surface-2 border border-[#00d4ff]/30 text-[#00d4ff] p-2 rounded-lg animate-float" style={{ animationDelay: '1s' }}>
-              <span className="font-mono text-xs">Docker</span>
-            </div>
-            <div className="absolute -bottom-4 right-10 bg-surface-2 border border-[#22c55e]/30 text-[#22c55e] p-2 rounded-lg animate-float" style={{ animationDelay: '2s' }}>
-              <span className="font-mono text-xs">K8s</span>
-            </div>
-            <div className="absolute bottom-1/4 -left-8 bg-surface-2 border border-[#a855f7]/30 text-[#a855f7] p-2 rounded-lg animate-float" style={{ animationDelay: '1.5s' }}>
-              <span className="font-mono text-xs">Terraform</span>
-            </div>
-
             <TerminalWindow />
           </motion.div>
         </div>

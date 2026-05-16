@@ -27,7 +27,7 @@ export default function Footer() {
         </div>
 
         <p className="text-sm text-text-muted">
-          Designed & Deployed with <span className="text-red-500">❤️</span> on Vercel
+          Designed & Deployed by <span className="text-red-500"></span> Arpit Khameshra
         </p>
       </div>
     </footer>

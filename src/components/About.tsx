@@ -48,9 +48,9 @@ export default function About() {
               </h3>
               <div className="grid grid-cols-2 gap-8">
                 <StatCounter value={40} suffix="%" label="↓ Deploy Time" />
-                <StatCounter value={99.9} suffix="%" label="Uptime Achieved" />
-                <StatCounter value={35} suffix="%" label="↓ Detect Time" />
-                <StatCounter value={50} suffix="%" label="↓ Env Bugs" />
+                <StatCounter value={25} suffix="%" label="↓ Latency" />
+                <StatCounter value={40} suffix="%" label="↓ Release Errors" />
+                <StatCounter value={20} suffix="%" label="↑ Dev Workflows" />
               </div>
             </motion.div>
 
@@ -92,15 +92,15 @@ export default function About() {
               <ul className="space-y-4 text-sm text-text-muted font-mono">
                 <li className="flex items-center space-x-3">
                   <span>🏢</span>
-                  <span className="text-text-main">Webledger Solution Pvt. Ltd</span>
+                  <span className="text-text-main">Webledger Solution Pvt. Ltd.</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   <span>📍</span>
-                  <span>Jaipur, India</span>
+                  <span>Surat, India</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   <span>💼</span>
-                  <span>DevOps Engineer (Aug 2025–Present)</span>
+                  <span>DevOps Engineer (Sept 2025–Present)</span>
                 </li>
                 <li className="flex items-center space-x-3 text-accent-3 mt-6 pt-4 border-t border-[--color-border-glow]">
                   <span className="relative flex h-3 w-3">

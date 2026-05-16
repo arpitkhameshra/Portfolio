@@ -18,8 +18,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Arpit Khameshra - DevOps Engineer",
-  description: "DevOps Engineer portfolio showcasing cloud infrastructure, CI/CD, and IaC projects.",
+  title: "Arpit Khameshra — DevOps Engineer | Cloud Infrastructure | CI/CD | IaC",
+  description: "DevOps Engineer with 1.5 years of experience in building scalable cloud infrastructure, implementing CI/CD pipelines, and automating deployments using AWS, Kubernetes, Docker, and Terraform. Skilled in monitoring, logging, and optimizing costs while ensuring high system availability and security compliance.",
 };
 
 export default function RootLayout({

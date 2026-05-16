@@ -80,7 +80,7 @@ export default function Hero() {
                 <ArrowRight size={18} />
               </a>
               <a 
-                href="/Arpit_Khameshra.pdf"
+                href="/Arpit_Khameshra_Resume_2026.pdf"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center space-x-2 border border-text-main text-text-main px-6 py-3 rounded-md font-medium hover:bg-white/5 transition-colors"

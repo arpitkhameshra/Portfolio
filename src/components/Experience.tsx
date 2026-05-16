@@ -57,6 +57,7 @@ export default function Experience() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: idx * 0.1 }}
+                whileHover={!isOpen ? { y: -2 } : {}}
                 className={`border rounded-xl bg-surface-2 overflow-hidden transition-colors duration-200 ${
                   isOpen ? "border-[#1D9E75]" : "border-[--color-border-glow] hover:border-text-muted/30"
                 }`}
@@ -64,7 +65,7 @@ export default function Experience() {
                 {/* Top Row / Header */}
                 <button
                   onClick={() => toggleTab(idx)}
-                  className="w-full flex items-center p-4 md:p-6 text-left focus:outline-none"
+                  className="w-full flex items-center p-4 md:p-6 text-left focus:outline-none bg-transparent"
                 >
                   {/* Zone 1: Index */}
                   <div
@@ -105,9 +106,11 @@ export default function Experience() {
                       {exp.period}
                     </div>
                     <div className="w-full h-1 bg-surface rounded-full overflow-hidden">
-                      <div 
+                      <motion.div 
                         className="h-full bg-[#1D9E75] rounded-full"
-                        style={{ width: `${(exp as any).tenurePercent || 50}%` }}
+                        initial={{ width: 0 }}
+                        animate={{ width: isOpen ? `${(exp as any).tenurePercent || 50}%` : "0%" }}
+                        transition={{ duration: 0.6, ease: "easeOut" }}
                       />
                     </div>
                   </div>
@@ -123,46 +126,71 @@ export default function Experience() {
                   </div>
                 </button>
 
-                {/* Expanded Body */}
-                <div className={isOpen ? "block" : "hidden"}>
-                  <div className="p-4 md:p-6 border-t border-[--color-border-glow] bg-surface/20">
-                    
-                    {/* Stat Strip */}
-                    {exp.stats && exp.stats.length > 0 && (
-                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-4 mb-8">
-                        {exp.stats.map((stat, i) => (
-                          <div key={i} className="bg-surface rounded-lg p-3 md:p-4 border border-[--color-border-glow] flex flex-col items-center justify-center text-center shadow-sm">
-                            <div className="text-xl md:text-2xl font-bold text-[#1D9E75] mb-1">{stat.value}</div>
-                            <div className="text-[10px] md:text-xs text-text-muted capitalize">{stat.label}</div>
-                          </div>
-                        ))}
-                      </div>
-                    )}
+                {/* Expanded Body (CSS Grid Animation) */}
+                <div 
+                  className={`grid transition-[grid-template-rows] duration-[350ms] ease-[cubic-bezier(.4,0,.2,1)] ${
+                    isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                  }`}
+                >
+                  <div className="overflow-hidden">
+                    <div className={`p-4 md:p-6 border-t border-[--color-border-glow] bg-surface/20 transition-all duration-300 delay-50 ${
+                      isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"
+                    }`}>
+                      
+                      {/* Stat Strip */}
+                      {exp.stats && exp.stats.length > 0 && (
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-4 mb-8">
+                          {exp.stats.map((stat, i) => (
+                            <div key={i} className="bg-surface rounded-lg p-3 md:p-4 border border-[--color-border-glow] flex flex-col items-center justify-center text-center shadow-sm">
+                              <motion.div 
+                                className="text-xl md:text-2xl font-bold text-[#1D9E75] mb-1"
+                                initial={{ scale: 0.85, opacity: 0 }}
+                                animate={isOpen ? { scale: 1, opacity: 1 } : { scale: 0.85, opacity: 0 }}
+                                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                              >
+                                {stat.value}
+                              </motion.div>
+                              <div className="text-[10px] md:text-xs text-text-muted capitalize">{stat.label}</div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
 
-                    {/* Bullets */}
-                    <ul className="space-y-3 md:space-y-4 text-text-muted text-sm leading-relaxed mb-8">
-                      {exp.bullets.map((bullet, i) => (
-                        <li key={i} className="flex items-start">
-                          <span className="text-[#1D9E75] mr-3 mt-0.5 font-bold">▹</span>
-                          <span className="text-left">{renderBullet(bullet)}</span>
-                        </li>
-                      ))}
-                    </ul>
-
-                    {/* Skill Tags */}
-                    <div className="pt-5 border-t border-[--color-border-glow]">
-                      <div className="flex flex-wrap gap-2">
-                        {exp.skills.map((skill, i) => (
-                          <span
-                            key={i}
-                            className="px-2.5 py-1 bg-surface border border-[--color-border-glow] rounded-md text-[11px] font-mono text-text-muted"
+                      {/* Bullets */}
+                      <ul className="space-y-3 md:space-y-4 text-text-muted text-sm leading-relaxed mb-8">
+                        {exp.bullets.map((bullet, i) => (
+                          <motion.li 
+                            key={i} 
+                            className="flex items-start"
+                            initial={{ opacity: 0, x: -6 }}
+                            animate={isOpen ? { opacity: 1, x: 0 } : { opacity: 0, x: -6 }}
+                            transition={{ delay: i * 0.07 + 0.1 }}
                           >
-                            {skill}
-                          </span>
+                            <span className="text-[#1D9E75] mr-3 mt-0.5 font-bold">▹</span>
+                            <span className="text-left">{renderBullet(bullet)}</span>
+                          </motion.li>
                         ))}
-                      </div>
-                    </div>
+                      </ul>
 
+                      {/* Skill Tags */}
+                      <div className="pt-5 border-t border-[--color-border-glow]">
+                        <div className="flex flex-wrap gap-2">
+                          {exp.skills.map((skill, i) => (
+                            <motion.span
+                              key={i}
+                              className="px-2.5 py-1 bg-surface border border-[--color-border-glow] rounded-md text-[11px] font-mono text-text-muted inline-block cursor-default"
+                              initial={{ opacity: 0, scale: 0.9 }}
+                              animate={isOpen ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+                              transition={{ delay: i * 0.03 + 0.28 }}
+                              whileHover={{ scale: 1.05 }}
+                            >
+                              {skill}
+                            </motion.span>
+                          ))}
+                        </div>
+                      </div>
+
+                    </div>
                   </div>
                 </div>
               </motion.div>
